@@ -2,6 +2,8 @@
 
 namespace Kybasu\Shifumi;
 
+use RuntimeException;
+
 const PIERRE = 1;
 const FEUILLE = 2;
 const CISEAUX = 3;
@@ -23,6 +25,9 @@ abstract class Game {
     }
 
     public static function play($signJules, $signFlavien): array {
+        if(!in_array($signJules, [PIERRE, FEUILLE, CISEAUX], true) || !in_array($signFlavien, [PIERRE, FEUILLE, CISEAUX], true)) {
+            throw new RuntimeException("Le signe de Jules n'est pas valide");
+        }
         $signs = [
             'Jules' => $signJules,
             'Flavien' => $signFlavien,
