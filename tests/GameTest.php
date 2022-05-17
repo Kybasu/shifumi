@@ -1,6 +1,7 @@
 <?php
 namespace App\Tests;
 
+use RuntimeException;
 use Kybasu\Shifumi\Game;
 use PHPUnit\Framework\TestCase;
 
@@ -107,5 +108,10 @@ final class GameTest extends TestCase
                 'Flavien' => $paper,
             ]
         ], $round);
+    }
+    
+    public function test_cant_play() {
+        $this->expectException(RuntimeException::class);
+        Game::play(4, 5);
     }
 }
