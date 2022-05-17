@@ -7,11 +7,17 @@ use PHPUnit\Framework\TestCase;
 
 final class GameTest extends TestCase
 {
+    /**
+     * @covers \Kybasu\Shifumi\Game::getSign
+     */
     public function test_getSign(): void {
         $sign = Game::getSign();
         $this->assertContains($sign, [1, 2, 3]);
     }
 
+    /**
+     * @covers \Kybasu\Shifumi\Game::translateSign
+     */
     public function test_translateSign(): void {
         $sign1 = Game::translateSign(1);
         $this->assertEquals('Pierre', $sign1);
@@ -23,6 +29,9 @@ final class GameTest extends TestCase
         $this->assertEquals('', $sign);
     }
 
+    /**
+     * @covers \Kybasu\Shifumi\Game::play
+     */
     public function test_play() {
         $rock = 1;
         $paper = 2;
@@ -108,9 +117,7 @@ final class GameTest extends TestCase
                 'Flavien' => $paper,
             ]
         ], $round);
-    }
-    
-    public function test_cant_play() {
+
         $this->expectException(RuntimeException::class);
         Game::play(4, 5);
     }
