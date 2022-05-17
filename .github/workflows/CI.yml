@@ -29,7 +29,7 @@ jobs:
         run: vendor/bin/phpunit tests --configuration phpunit.xml --coverage-clover phpunit.coverage.xml --log-junit phpunit.report.xml
 
       - name: Fix code coverage paths
-        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
+        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' phpunit.coverage.xml
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
